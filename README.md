@@ -3,7 +3,8 @@
 ## Elevator pitch
 
 ## Personas
-### Jenifer Thomas (link)
+### Jenifer Thomas
+- Photo: http://midlifemaverick.com/wp-content/uploads/2012/08/Molly-Mahar.jpg
 - Education: Four year degree, will return for masters degree after the child is born.
 - Household: Lives in a house with husband (Mike), just celebrated their 3rd wedding
              anniversary. They have a dog and are expecting their first child. Her
@@ -20,7 +21,8 @@
              for care after returning to work.
 - Income level: $80-100K (dual)
 
-### Amy Sanders (link)
+### Amy Sanders
+- Photo: https://cdn3.nursinglicensemap.com/content/9d3968d2dc1b4bdeb09b74e20999ade4/Registered_nurse.jpg
 - Education: Four year degree.
 - Household: Lives alone in an apartment. Has a cat.
 - Hobbies: Watching TV.
