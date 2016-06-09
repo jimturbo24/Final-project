@@ -33,3 +33,12 @@
 - Baby care: Plans to take two weeks off of work to be with her new baby. Will
              use a combination of day-care and friends for care after returning to work.
 - Income level: $40-60K (single)
+
+### User stories
+- As a mother I want to record the time my baby went to sleep so that the nanny may know how long the baby has been asleep.
+- As a nanny I want to record how much milk the baby drank so that the mother will know how well the child ate.
+- As a mother I want to add caretakers to my baby's account so that they can record the baby's events.
+- As a caretaker I want to accept an invitation to a baby's account so that I can edit the records.
+- As a mother I want to be able to customize my baby's chart so that I only see relevent information to my childcare style.
+- As a caretaker I want to be able to see a visualization of the data for a specific catagorie so that I can be updated about the baby quickly.
+- 
