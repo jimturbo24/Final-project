@@ -1,9 +1,23 @@
 # Final-project
 
+## M.V.P.
+Allow multiple caretakers to record non-vital data (nvd) for a baby. There will
+be one primary caretaker who will setup a baby instance and authorize other caretakers
+to add baby nvd. Individual categories of nvd can be analyzed quickly via a graph
+of the most recent entries. Revenue will be generated via in-app advertising using
+the Amazon Product Advertising API.
+
+## Milestones
+1. Add primary caretaker and baby
+2. Add a secondary caretaker
+3. Graphing functionality
+4. In-app advertising
+5. Polish and unit tests
+
 ## Elevator pitch
 
 ## Personas
-### Jenifer Thomas
+### Jennifer Thomas
 - Photo: http://midlifemaverick.com/wp-content/uploads/2012/08/Molly-Mahar.jpg
 - Education: Four year degree, will return for masters degree after the child is born.
 - Household: Lives in a house with husband (Mike), just celebrated their 3rd wedding
