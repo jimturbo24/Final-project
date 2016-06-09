@@ -41,4 +41,3 @@
 - As a caretaker I want to accept an invitation to a baby's account so that I can edit the records.
 - As a mother I want to be able to customize my baby's chart so that I only see relevent information to my childcare style.
 - As a caretaker I want to be able to see a visualization of the data for a specific catagorie so that I can be updated about the baby quickly.
-- 
