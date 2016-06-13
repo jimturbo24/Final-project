@@ -8,7 +8,7 @@ of the most recent entries. Revenue will be generated via in-app advertising usi
 the Amazon Product Advertising API.
 
 ## Milestones
-1. Add primary caretaker and baby
+1. Create a caretaker account/login and add a baby
 2. Add an event, display events
 3. Graphing functionality
 4. Add a secondary caretaker
@@ -21,7 +21,7 @@ they can now record all their baby's information easily with their smartphone. T
 gives them easy access to all their baby's information with charts that make it easy to spot
 trends in their baby's behavior. What sets Mom's Best Friend apart from other baby
 apps is the ability for many caretakers to add to a baby's information. This is a
-must have feature for mom's who have others help care for their baby and still want 
+must have feature for mom's who have others help care for their baby and still want
 a consistent record of their baby's information.
 
 
@@ -81,7 +81,18 @@ of the "dinosaurs" that she works with wouldn't know how to use their phones to
 utilize the application. She did note that she would rather pay for the application
 instead of having in-app advertising.
 
-
+- Michelle T. - Physician and mother of 2 year old twin girls. Michelle works
+part-time and relys on a combination of in home day-care and family to provide
+care to her children while at work. While her children were infants she discovered
+that she needed a way to allow multiple caretakers to record nvd for her children
+and allow all to have access to that data at any time. The only solution that she
+could find to solve this problem was to utilize a paper and pen based spreadsheet.
+She feels like having a smartphone app that could replace the paper spreadsheet
+would be nice because she could monitor what was happening while at work. She would
+also find it useful to be able to see a graph of the data so she could quickly identify
+trends in behavior. This was a feature that was available in other baby record apps,
+unfortunately they did not allow for multiple users and thus were not useful to her.
+The only problem that she could identify was related to users not entering data.   
 
 ## Data models
 - Baby (has one family)
