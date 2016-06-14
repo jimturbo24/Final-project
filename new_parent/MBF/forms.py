@@ -1,5 +1,13 @@
 from django import forms
+from .models import CareTaker
+from django.contrib.auth.models import User
 
-class CreateUserForm(forms.Form):
-    user_name = forms.CharField(label='Username', max_length=100)
-    password = forms.CharField(label='Password', max_length=100)
+class CreateUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password', 'first_name', 'last_name', 'email']
+
+class CareTakerForm(forms.ModelForm):
+    class Meta:
+        model = CareTaker
+        fields = ['phone_number', 'relation']

@@ -16,13 +16,7 @@
 
 {% block content %}
 
-<form action="{% url 'MBF:create-account' %}" method="POST">
-    {% csrf_token %}
-    <legend>Create an Account</legend>
-    {{ user_form }}
-    {{ caretaker_form }}
-    <input type="submit" value="OK">
-</form>
-
+<h4>You have been logged out.</h4>
+<p style=margin-top:10px class=""><a href="{% url 'login' %}">Login</a></p>
 
 {% endblock %}
