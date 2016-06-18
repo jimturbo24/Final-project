@@ -2,7 +2,49 @@
 
 {% block content %}
 
-<h2>Dashboard Stuff</h2>
+<h2>Dashboard</h2>
+<h3>Hello {{ user.get_username }}</h3>
+{% if breastList %}
+  <p>Last breast fed from: {{ breastList.0.breast }}</p>
+{% else %}
+  <p>Last breast fed from: No entries</p>
+{% endif %}
+<a href="{% url 'MBF:update-breast' %}">Update</a>
 
+{% if bottleList %}
+  <p>Last bottle amount: {{ bottleList.0.amount }} oz.</p>
+{% else %}
+  <p>Last bottle amount: No entries</p>
+{% endif %}
+<a href="{% url 'MBF:update-bottle' %}">Update</a>
+
+{% if diaperList %}
+  <p>Last diaper change: {{ diaperList.0.diaper }}</p>
+{% else %}
+  <p>Last diaper change: No entries</p>
+{% endif %}
+<a href="{% url 'MBF:update-diaper' %}">Update</a>
+
+{% if tempList %}
+  <p>Last temperature was: {{ tempList.0.temp }}</p>
+{% else %}
+  <p>Last temperature was: No entries</p>
+{% endif %}
+<a href="{% url 'MBF:update-temperature' %}">Update</a>
+
+{% if sleepList %}
+  <p>Last sleep time was: {{ sleepList.0.event_time }}</p>
+{% else %}
+  <p>Last sleep time was: No entries</p>
+{% endif %}
+<a href="{% url 'MBF:update-sleep' %}">Update</a>
+
+
+{% if wakeList %}
+  <p>Last wake time was: {{ wakeList.0.event_time }}</p>
+{% else %}
+  <p>Last wake time was: No entries</p>
+{% endif %}
+<a href="{% url 'MBF:update-wake' %}">Update</a>
 
 {% endblock %}

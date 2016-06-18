@@ -15,7 +15,7 @@ the Amazon Product Advertising API.
 5. In-app advertising
 
 ## Elevator pitch
-Mom's Best Friend is an app for keeping track of all of a baby's important information.
+Mom's Best Friend is an app for keeping track of all of a baby's vital information.
 For mothers who are tired of recording their baby's information with paper and pen,
 they can now record all their baby's information easily with their smartphone. This
 gives them easy access to all their baby's information with charts that make it easy to spot

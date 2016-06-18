@@ -1,0 +1,12 @@
+{% extends "MBF/base.html" %}
+
+{% block content %}
+
+<form action="{% url 'MBF:update-sleep' %}" method="POST">
+    {% csrf_token %}
+    <legend>Update sleep time</legend>
+    {{ sleep_form }}
+    <input type="submit" value="OK">
+</form>
+
+{% endblock %}

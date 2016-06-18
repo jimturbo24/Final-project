@@ -1,0 +1,12 @@
+{% extends "MBF/base.html" %}
+
+{% block content %}
+
+<form action="{% url 'MBF:create-child' %}" method="POST">
+    {% csrf_token %}
+    <legend>Add a Child</legend>
+    {{ baby_form }}
+    <input type="submit" value="OK">
+</form>
+
+{% endblock %}

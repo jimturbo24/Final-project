@@ -1,0 +1,12 @@
+{% extends "MBF/base.html" %}
+
+{% block content %}
+
+<form action="{% url 'MBF:update-breast' %}" method="POST">
+    {% csrf_token %}
+    <legend>Update breast</legend>
+    {{ breast_form }}
+    <input type="submit" value="OK">
+</form>
+
+{% endblock %}

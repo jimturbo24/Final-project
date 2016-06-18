@@ -1,0 +1,12 @@
+{% extends "MBF/base.html" %}
+
+{% block content %}
+
+<form action="{% url 'MBF:update-temperature' %}" method="POST">
+    {% csrf_token %}
+    <legend>Update temperature</legend>
+    {{ temp_form }}
+    <input type="submit" value="OK">
+</form>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "MBF/base.html" %}
+
+{% block content %}
+
+<form action="{% url 'MBF:update-diaper' %}" method="POST">
+    {% csrf_token %}
+    <legend>Update diaper status</legend>
+    {{ diaper_form }}
+    <input type="submit" value="OK">
+</form>
+
+{% endblock %}
