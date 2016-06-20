@@ -6,7 +6,8 @@
     {% csrf_token %}
     <legend>Add Event</legend>
     {{ form }}
-    <input type="submit" value="OK">
+    <input type="hidden" name="baby_id" value="{{ baby_id }}"/>
+    <input type="submit" value="OK"/>
 </form>
 
 {% endblock %}

@@ -1,8 +1,9 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import CareTaker, BreastFed, BottleFed, DiaperStatus, Temperature, Sleep, Wake
+from .models import CareTaker, BreastFed, BottleFed, DiaperStatus, Temperature, Sleep, Wake, Baby
 from .forms import CreateUserForm, CareTakerForm, BabyForm, BreastFedForm, \
                    BottleFedForm, DiaperStatusForm, TemperatureForm, SleepForm, WakeForm
 
@@ -14,12 +15,15 @@ def dashboard(request):
     tempList = Temperature.objects.order_by('-event_time')
     sleepList = Sleep.objects.order_by('-event_time')
     wakeList = Wake.objects.order_by('-event_time')
+    care_taker = CareTaker.objects.get(user=request.user)
+    babys = care_taker.family.baby_set.all()
     context = {'breastList': breastList,
                'bottleList': bottleList,
                'diaperList': diaperList,
                'tempList': tempList,
                'sleepList': sleepList,
-               'wakeList': wakeList}
+               'wakeList': wakeList,
+               'babys': babys}
     return render(request, 'MBF/dashboard.html', context)
 
 def create_user(request):
@@ -69,9 +73,29 @@ def add_event(request, event_type):
                        'temperature': TemperatureForm,
                        'sleep': SleepForm,
                        'wake': WakeForm}
-    form = event_form_list[event_type](request.POST)
-    if form.is_valid():
-        event = form.save()
-        return HttpResponseRedirect('/MBF/')
+    care_taker = CareTaker.objects.get(user=request.user)
 
-    return render(request, 'MBF/add_event.html', {'form': form})
+    if request.method == "GET":
+        try:
+            baby_id = int(request.GET['baby_id'])
+            baby = Baby.objects.get(id=baby_id)
+        except Baby.DoesNotExist:
+            return HttpResponseServerError("No records exist!")
+
+    if request.method == "POST":
+        form = event_form_list[event_type](request.POST)
+        baby_id = int(request.POST['baby_id'])
+        baby = Baby.objects.get(id=baby_id)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.baby = baby
+            event.save()
+            return HttpResponseRedirect('/MBF/')
+    else:
+        form = event_form_list[event_type]()
+
+    if care_taker.family == baby.family:
+        return render(request, 'MBF/add_event.html', {'form': form,
+                                                      'baby_id': baby_id})
+    else:
+        raise PermissionDenied
