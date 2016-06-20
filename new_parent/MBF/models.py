@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 
+class Test(models.Model):
+    name = models.CharField(max_length=128)
+    family = models.ForeignKey('Family', related_name='test')
+
+    def __str__(self):
+        return self.name
+
+
 class Family(models.Model):
     name = models.CharField(max_length=128)
 
@@ -40,13 +48,11 @@ class BabyEvent(models.Model):
         return str(self.event_time)
 
 class BreastFed(BabyEvent):
-    left = 'LT'
-    right = 'RT'
-    breast_choice = ((left, 'Left'),
-                     (right, 'Right'))
-    breast = models.CharField(max_length=2,
+    breast_choice = (('left', 'Left'),
+                     ('right', 'Right'))
+    breast = models.CharField(max_length=5,
                               choices=breast_choice,
-                              default=left)
+                              default='left')
 
     def __str__(self):
         return str(self.event_time)
@@ -58,26 +64,20 @@ class BottleFed(BabyEvent):
         return str(self.amount)
 
 class DiaperStatus(BabyEvent):
-    poo = 'PO'
-    pee = 'PE'
-    both = 'BO'
-    diaper_choice = ((poo, 'Poo'),
-                     (pee, 'Pee'),
-                     (both, 'Poo & Pee'))
-    diaper = models.CharField(max_length=2,
+    diaper_choice = (('poo', 'Poo'),
+                     ('pee', 'Pee'),
+                     ('both', 'Poo & Pee'))
+    diaper = models.CharField(max_length=4,
                               choices=diaper_choice,
-                              default=pee)
+                              default='pee')
 
 class Temperature(BabyEvent):
-    normal = 'NO'
-    warm = 'WM'
-    hot = 'HO'
-    temp_choice = ((normal, 'Normal'),
-                   (warm, 'Warm'),
-                   (hot, 'Hot'))
-    temp = models.CharField(max_length=2,
+    temp_choice = (('normal', 'Normal'),
+                   ('warm', 'Warm'),
+                   ('hot', 'Hot'))
+    temp = models.CharField(max_length=6,
                               choices=temp_choice,
-                              default=normal)
+                              default='normal')
 
 class Sleep(BabyEvent):
     nap = 'NP'

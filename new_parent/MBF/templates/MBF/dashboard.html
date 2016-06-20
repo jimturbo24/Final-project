@@ -3,48 +3,50 @@
 {% block content %}
 
 <h2>Dashboard</h2>
-<h3>Hello {{ user.get_username }}</h3>
+<h3>{{ user.get_username|capfirst }} these are your baby's most recent events.</h3>
 {% if breastList %}
-  <p>Last breast fed from: {{ breastList.0.breast }}</p>
+  <p>Last breast fed from: {{ breastList.0.breast }} on
+                           {{ breastList.0.event_time|date:'l' }} at
+                           {{ breastList.0.event_time|date:'P' }}
+  </p>
 {% else %}
   <p>Last breast fed from: No entries</p>
 {% endif %}
-<a href="{% url 'MBF:update-breast' %}">Update</a>
+<a href="/MBF/add-event/breast/">Update</a>
 
 {% if bottleList %}
   <p>Last bottle amount: {{ bottleList.0.amount }} oz.</p>
 {% else %}
   <p>Last bottle amount: No entries</p>
 {% endif %}
-<a href="{% url 'MBF:update-bottle' %}">Update</a>
+<a href="/MBF/add-event/bottle/">Update</a>
 
 {% if diaperList %}
   <p>Last diaper change: {{ diaperList.0.diaper }}</p>
 {% else %}
   <p>Last diaper change: No entries</p>
 {% endif %}
-<a href="{% url 'MBF:update-diaper' %}">Update</a>
+<a href="/MBF/add-event/diaper/">Update</a>
 
 {% if tempList %}
   <p>Last temperature was: {{ tempList.0.temp }}</p>
 {% else %}
   <p>Last temperature was: No entries</p>
 {% endif %}
-<a href="{% url 'MBF:update-temperature' %}">Update</a>
+<a href="/MBF/add-event/temperature/">Update</a>
 
 {% if sleepList %}
-  <p>Last sleep time was: {{ sleepList.0.event_time }}</p>
+  <p>Last sleep time was: {{ sleepList.0.event_time|date:'l P' }}</p>
 {% else %}
   <p>Last sleep time was: No entries</p>
 {% endif %}
-<a href="{% url 'MBF:update-sleep' %}">Update</a>
-
+<a href="/MBF/add-event/sleep/">Update</a>
 
 {% if wakeList %}
-  <p>Last wake time was: {{ wakeList.0.event_time }}</p>
+  <p>Last wake time was: {{ wakeList.0.event_time|date:'l P' }}</p>
 {% else %}
   <p>Last wake time was: No entries</p>
 {% endif %}
-<a href="{% url 'MBF:update-wake' %}">Update</a>
+<a href="/MBF/add-event/wake/">Update</a>
 
 {% endblock %}

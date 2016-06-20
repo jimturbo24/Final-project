@@ -1,0 +1,12 @@
+{% extends "MBF/base.html" %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <legend>Add Event</legend>
+    {{ form }}
+    <input type="submit" value="OK">
+</form>
+
+{% endblock %}

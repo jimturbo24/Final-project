@@ -49,25 +49,6 @@ def create_child(request):
     return render(request, 'MBF/create_baby.html', {'baby_form': baby_form})
 
 @login_required
-def update_breast(request):
-    breast_form = BreastFedForm(request.POST)
-    if breast_form.is_valid():
-        breast = breast_form.save()
-        breast.baby = baby
-        return HttpResponseRedirect('/MBF/')
-
-    return render(request, 'MBF/update_breast.html', {'breast_form': breast_form})
-
-@login_required
-def update_bottle(request):
-    bottle_form = BottleFedForm(request.POST)
-    if bottle_form.is_valid():
-        bottle = bottle_form.save()
-        return HttpResponseRedirect('/MBF/')
-
-    return render(request, 'MBF/update_bottle.html', {'bottle_form': bottle_form})
-
-@login_required
 def update_diaper(request):
     diaper_form = DiaperStatusForm(request.POST)
     if diaper_form.is_valid():
@@ -81,28 +62,16 @@ def update_diaper(request):
     return render(request, 'MBF/update_diaper.html', {'diaper_form': diaper_form})
 
 @login_required
-def update_temperature(request):
-    temp_form = TemperatureForm(request.POST)
-    if temp_form.is_valid():
-        temp = temp_form.save()
+def add_event(request, event_type):
+    event_form_list = {'breast': BreastFedForm,
+                       'bottle': BottleFedForm,
+                       'diaper': DiaperStatusForm,
+                       'temperature': TemperatureForm,
+                       'sleep': SleepForm,
+                       'wake': WakeForm}
+    form = event_form_list[event_type](request.POST)
+    if form.is_valid():
+        event = form.save()
         return HttpResponseRedirect('/MBF/')
 
-    return render(request, 'MBF/update_temp.html', {'temp_form': temp_form})
-
-@login_required
-def update_sleep(request):
-    sleep_form = SleepForm(request.POST)
-    if sleep_form.is_valid():
-        sleep = sleep_form.save()
-        return HttpResponseRedirect('/MBF/')
-
-    return render(request, 'MBF/update_sleep.html', {'sleep_form': sleep_form})
-
-@login_required
-def update_wake(request):
-    wake_form = WakeForm(request.POST)
-    if wake_form.is_valid():
-        wake = wake_form.save()
-        return HttpResponseRedirect('/MBF/')
-
-    return render(request, 'MBF/update_wake.html', {'wake_form': wake_form})
+    return render(request, 'MBF/add_event.html', {'form': form})
