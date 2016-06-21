@@ -2,13 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 
-class Test(models.Model):
-    name = models.CharField(max_length=128)
-    family = models.ForeignKey('Family', related_name='test')
-
-    def __str__(self):
-        return self.name
-
 
 class Family(models.Model):
     name = models.CharField(max_length=128)
@@ -40,6 +33,26 @@ class Baby(models.Model):
     def __str__(self):
         return self.first_name
 
+    def get_breast_events(self):
+        eventList = BreastFed.objects.filter(baby=self).order_by('-event_time')[0:3]
+        return eventList
+    def get_bottle_events(self):
+        eventList = BottleFed.objects.filter(baby=self).order_by('-event_time')[0:3]
+        return eventList
+    def get_temperature_events(self):
+        eventList = Temperature.objects.filter(baby=self).order_by('-event_time')[0:3]
+        return eventList
+    def get_sleep_events(self):
+        eventList = Sleep.objects.filter(baby=self).order_by('-event_time')[0:3]
+        return eventList
+    def get_wake_events(self):
+        eventList = Wake.objects.filter(baby=self).order_by('-event_time')[0:3]
+        return eventList
+    def get_diaper_events(self):
+        eventList = DiaperStatus.objects.filter(baby=self).order_by('-event_time')[0:3]
+        return eventList
+
+
 class BabyEvent(models.Model):
     event_time = models.DateTimeField(auto_now_add=True)
     baby = models.ForeignKey(Baby, on_delete=models.SET_NULL, null=True)
@@ -66,8 +79,8 @@ class BottleFed(BabyEvent):
 class DiaperStatus(BabyEvent):
     diaper_choice = (('poo', 'Poo'),
                      ('pee', 'Pee'),
-                     ('both', 'Poo & Pee'))
-    diaper = models.CharField(max_length=4,
+                     ('poo & pee', 'Poo & Pee'))
+    diaper = models.CharField(max_length=9,
                               choices=diaper_choice,
                               default='pee')
 

@@ -23,7 +23,8 @@ def dashboard(request):
                'tempList': tempList,
                'sleepList': sleepList,
                'wakeList': wakeList,
-               'babys': babys}
+               'babys': babys,
+               'breast_class': BreastFed}
     return render(request, 'MBF/dashboard.html', context)
 
 def create_user(request):

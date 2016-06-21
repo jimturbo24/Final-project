@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import CareTaker, Family, Baby, BabyEvent, BreastFed, BottleFed, DiaperStatus, Temperature, Sleep, Wake, Test
+from .models import CareTaker, Family, Baby, BabyEvent, BreastFed, BottleFed, DiaperStatus, Temperature, Sleep, Wake
 
 
-admin.site.register(Test)
 admin.site.register(CareTaker)
 admin.site.register(Family)
 admin.site.register(Baby)

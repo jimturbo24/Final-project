@@ -2,10 +2,60 @@
 
 {% block content %}
 
-<h2>Dashboard</h2>
-<h3>{{ user.get_username|capfirst }} these are your baby's most recent events.</h3>
-
+<h2>{{ user.get_username|capfirst }}'s Dashboard</h2>
 {% for baby in babys %}
+<h3>{{ baby.first_name|capfirst }}'s most recent events.</h3>
+
+<h4>Breast Feeding</h4>
+{% for event in baby.get_breast_events %}
+  <p>Fed from the {{ event.breast }} on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
+{% empty %}
+  <p>No entries</p>
+{% endfor %}
+<a href="/MBF/add-event/breast?baby_id=1">Update</a>
+
+<h4>Bottle Feeding</h4>
+{% for event in baby.get_bottle_events %}
+  <p>Ate {{ event.amount }} oz. on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
+{% empty %}
+  <p>No entries</p>
+{% endfor %}
+<a href="/MBF/add-event/bottle?baby_id=1">Update</a>
+
+<h4>Diaper</h4>
+{% for event in baby.get_diaper_events %}
+  <p>{{ event.diaper|capfirst }} in the diaper on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
+{% empty %}
+  <p>No entries</p>
+{% endfor %}
+<a href="/MBF/add-event/diaper?baby_id=1">Update</a>
+
+<h4>Temperature</h4>
+{% for event in baby.get_temperature_events %}
+  <p>Temperature was {{ event.amount }} on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
+{% empty %}
+  <p>No entries</p>
+{% endfor %}
+<a href="/MBF/add-event/temperature?baby_id=1">Update</a>
+
+<h4>Sleep Time</h4>
+{% for event in baby.get_sleep_events %}
+  <p>Fell asleep on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
+{% empty %}
+  <p>No entries</p>
+{% endfor %}
+<a href="/MBF/add-event/sleep?baby_id=1">Update</a>
+
+<h4>Wake Time</h4>
+{% for event in baby.get_sleep_events %}
+  <p>Woke up on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
+{% empty %}
+  <p>No entries</p>
+{% endfor %}
+<a href="/MBF/add-event/wake?baby_id=1">Update</a>
+
+{% endfor %}
+
 
 {% if breastList %}
   <p>Last breast fed from: {{ breastList.0.breast }} on
@@ -52,6 +102,5 @@
 {% endif %}
 <a href="/MBF/add-event/wake?baby_id=1">Update</a>
 
-{% endfor %}
 
 {% endblock %}
