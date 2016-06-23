@@ -1,3 +1,4 @@
+import pytz
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
@@ -12,9 +13,12 @@ from .forms import CreateUserForm, CareTakerForm, BabyForm, BreastFedForm, \
 def dashboard(request):
     care_taker = CareTaker.objects.get(user=request.user)
     babys = care_taker.family.baby_set.all()
-    context = {
-               'babys': babys}
+    context = {'babys': babys}
     return render(request, 'MBF/dashboard.html', context)
+
+def home(request):
+    context = {}
+    return render(request, 'MBF/home.html', context)
 
 def create_user(request):
     if request.method == 'POST':
@@ -42,19 +46,6 @@ def create_child(request):
         return HttpResponseRedirect('/MBF/')
 
     return render(request, 'MBF/create_baby.html', {'baby_form': baby_form})
-
-@login_required
-def update_diaper(request):
-    diaper_form = DiaperStatusForm(request.POST)
-    if diaper_form.is_valid():
-        ct = CareTaker.objects.get(user=request.user)
-        baby = ct.family.babys[0]
-        diaper = diaper_form.save()
-        diaper.baby = baby
-        diaper.save()
-        return HttpResponseRedirect('/MBF/')
-
-    return render(request, 'MBF/update_diaper.html', {'diaper_form': diaper_form})
 
 @login_required
 def add_event(request, event_type):
@@ -104,7 +95,9 @@ def bottle_chart(request):
                 'amount']}
              ])
     def dt_convert(dt_object):
-        return dt_object.strftime('%a %I:%M %p')
+        local_tz = pytz.timezone('America/Chicago')
+        local_dt = dt_object.replace(tzinfo=pytz.utc).astimezone(local_tz)
+        return local_dt.strftime('%a %I:%M %p')
         # return dt_object.strftime('%a %b %d')
 
     #Step 2: Create the Chart object
@@ -130,4 +123,48 @@ def bottle_chart(request):
             x_sortf_mapf_mts = (None, dt_convert, False))
 
     #Step 3: Send the chart object to the template.
-    return render(request, 'MBF/bottle_chart.html',{'chart': cht})
+    return render(request, 'MBF/chart.html',{'chart': cht})
+
+
+def temperature_chart(request):
+    baby_id = int(request.GET['baby_id'])
+    #Step 1: Create a DataPool with the data we want to retrieve.
+    event_data = \
+        DataPool(
+           series=
+            [{'options': {
+               'source': Temperature.objects.filter(baby__id=baby_id).order_by('-event_time')[0:20]},
+              'terms': [
+                'event_time',
+                'temp']}
+             ])
+    def dt_convert(dt_object):
+        local_tz = pytz.timezone('America/Chicago')
+        local_dt = dt_object.replace(tzinfo=pytz.utc).astimezone(local_tz)
+        return local_dt.strftime('%a %I:%M %p')
+        # return dt_object.strftime('%a %b %d')
+
+    #Step 2: Create the Chart object
+    cht = Chart(
+            datasource = event_data,
+            series_options =
+              [{'options':{
+                  'type': 'column',
+                  'stacking': False},
+                'terms':{
+                  'event_time': [
+                    'temp']
+                  }}],
+            chart_options =
+              {'title': {
+                   'text': 'Temperature'},
+               'xAxis': {
+                    'title': {
+                       'text': 'Date'}},
+                'yAxis': {
+                    'title': {
+                        'text': 'Relative Temp'}}},
+            x_sortf_mapf_mts = (None, dt_convert, False))
+
+    #Step 3: Send the chart object to the template.
+    return render(request, 'MBF/chart.html',{'chart': cht})
