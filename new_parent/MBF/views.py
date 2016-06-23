@@ -98,13 +98,14 @@ def bottle_chart(request):
         DataPool(
            series=
             [{'options': {
-               'source': BottleFed.objects.get(baby.id=baby_id)},
+               'source': BottleFed.objects.filter(baby__id=baby_id).order_by('-event_time')[0:20]},
               'terms': [
                 'event_time',
                 'amount']}
              ])
     def dt_convert(dt_object):
-        return dt_object.strftime('%a %b %d')
+        return dt_object.strftime('%a %I:%M %p')
+        # return dt_object.strftime('%a %b %d')
 
     #Step 2: Create the Chart object
     cht = Chart(
