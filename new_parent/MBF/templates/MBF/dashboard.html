@@ -1,59 +1,66 @@
 {% extends "MBF/base.html" %}
+{% load staticfiles %}
 
 {% block content %}
 
-<h2>{{ user.get_username|capfirst }}'s Dashboard</h2>
+<h1>{{ user.get_username|capfirst }}'s Dashboard</h1>
 {% for baby in babys %}
-<h3>{{ baby.first_name|capfirst }}'s most recent events.</h3>
+<h2>{{ baby.first_name|capfirst }}'s most recent events.</h2>
 
-<h4>Breast Feeding</h4>
+<h3>Breast Feeding</h3>
+<img src="{% static 'MBF/breastfeeding.jpg' %}" alt="Bottle image" height="" width="">
 {% for event in baby.get_breast_events %}
   <p>Fed from the {{ event.breast }} on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
 {% empty %}
   <p>No entries</p>
 {% endfor %}
-<a href="/MBF/add-event/breast?baby_id={{ baby.id }}">Update</a>
+<a href="/MBF/add-event/breast?baby_id={{ baby.id }}" class="btn btn-primary">Update</a>
 
 <h4>Bottle Feeding</h4>
+<img src="{% static 'MBF/feeding-bottle.png' %}" alt="Bottle image" height="" width="">
 {% for event in baby.get_bottle_events %}
   <p>Ate {{ event.amount }} oz. on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
 {% empty %}
   <p>No entries</p>
 {% endfor %}
-<a href="/MBF/add-event/bottle?baby_id={{ baby.id }}">Update</a>
-<a href="/MBF/bottle-chart?baby_id={{ baby.id }}">Graph</a>
+<a href="/MBF/add-event/bottle?baby_id={{ baby.id }}" class="btn btn-primary">Update</a>
+<a href="/MBF/bottle-chart?baby_id={{ baby.id }}" class="btn btn-primary">Graph</a>
 
 <h4>Diaper</h4>
+<img src="{% static 'MBF/baby-diaper-outline.png' %}" alt="Bottle image" height="" width="">
 {% for event in baby.get_diaper_events %}
   <p>{{ event.diaper|capfirst }} in the diaper on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
 {% empty %}
   <p>No entries</p>
 {% endfor %}
-<a href="/MBF/add-event/diaper?baby_id={{ baby.id }}">Update</a>
+<a href="/MBF/add-event/diaper?baby_id={{ baby.id }}" class="btn btn-primary">Update</a>
 
 <h4>Temperature</h4>
+<img src="{% static 'MBF/thermometer.png' %}" alt="Bottle image" height="" width="">
 {% for event in baby.get_temperature_events %}
   <p>Temperature was {{ event.temp }} on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
 {% empty %}
   <p>No entries</p>
 {% endfor %}
-<a href="/MBF/add-event/temperature?baby_id={{ baby.id }}">Update</a>
+<a href="/MBF/add-event/temperature?baby_id={{ baby.id }}" class="btn btn-primary">Update</a>
 
 <h4>Sleep Time</h4>
+<img src="{% static 'MBF/moon-and-stars.png' %}" alt="Bottle image" height="" width="">
 {% for event in baby.get_sleep_events %}
   <p>Fell asleep on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
 {% empty %}
   <p>No entries</p>
 {% endfor %}
-<a href="/MBF/add-event/sleep?baby_id={{ baby.id }}">Update</a>
+<a href="/MBF/add-event/sleep?baby_id={{ baby.id }}" class="btn btn-primary">Update</a>
 
 <h4>Wake Time</h4>
+<img src="{% static 'MBF/smiling-sun.png' %}" alt="Bottle image" height="" width="">
 {% for event in baby.get_wake_events %}
   <p>Woke up on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
 {% empty %}
   <p>No entries</p>
 {% endfor %}
-<a href="/MBF/add-event/wake?baby_id={{ baby.id }}">Update</a>
+<a href="/MBF/add-event/wake?baby_id={{ baby.id }}" class="btn btn-primary">Update</a>
 
 {% endfor %}
 

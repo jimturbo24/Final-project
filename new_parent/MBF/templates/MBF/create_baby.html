@@ -5,7 +5,7 @@
 <form action="{% url 'MBF:create-child' %}" method="POST">
     {% csrf_token %}
     <legend>Add a Child</legend>
-    {{ baby_form }}
+    {{ baby_form.as_table }}
     <input type="submit" value="OK">
 </form>
 

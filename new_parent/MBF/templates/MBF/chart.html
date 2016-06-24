@@ -1,3 +1,4 @@
+{% load staticfiles %}
 {% load bootstrap3 %}
 
 <!DOCTYPE html>
@@ -15,7 +16,8 @@
   {% bootstrap_javascript %}
   {% load chartit %}
   {{ chart|load_charts:"container" }}
-  <title>{% block title %}Baby Status{% endblock %}</title>
+  <title>{% block title %}M.B.F. Charts{% endblock %}</title>
+  <link rel="icon" href="{% static 'MBF/MBF.ico' %}">
 </head>
 
 <body>

@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load bootstrap3 %}
+
 <html>
   <head>
     <meta charset="utf-8">
-    <title>MBF Home</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href="https://bootswatch.com/spacelab/bootstrap.min.css" rel="stylesheet">
+    {% bootstrap_javascript %}
+    <title>M.B.F. Home</title>
     <link rel="icon" href="{% static 'MBF/MBF.ico' %}">
   </head>
   <body>
-    <h1>Welcome to Mothers Best Friend</h1>
-    <img src="{% static 'MBF/MBF.png' %}" alt="Mothers Best Friend logo" height="" width="">
+    <div class="jumbotron text-center">
+      <h1>Welcome to Mom's Best Friend</h1>
+      <img src="{% static 'MBF/MBF.png' %}" alt="Mothers Best Friend logo" height="303" width="400">
+      <!-- <a href="#" class="btn btn-primary btn-lg btn-block">Login</a> -->
+      <a href="/login/" class="btn btn-primary btn-lg">Login</a>
+      <a href="/MBF/create-account/" class="btn btn-primary btn-lg">Create Account</a>
+    </div>
   </body>
 </html>
