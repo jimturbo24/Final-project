@@ -1,6 +1,6 @@
 from .settings import *
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 import dj_database_url
