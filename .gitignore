@@ -8,6 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+new_parent/new_parent/staticfiles/
 venv/
 env/
 build/

@@ -1,0 +1,12 @@
+Babel==2.3.4
+dj-database-url==0.4.1
+Django==1.9.7
+django-bootstrap3==7.0.1
+django-chartit2==0.2.2
+django-phonenumber-field==1.1.0
+gunicorn==19.6.0
+phonenumberslite==7.4.2
+psycopg2==2.6.1
+pytz==2016.4
+simplejson==3.8.2
+whitenoise==3.2

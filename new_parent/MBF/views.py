@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import CareTaker, BreastFed, BottleFed, DiaperStatus, Temperature, Sleep, Wake, Baby
 from .forms import CreateUserForm, CareTakerForm, BabyForm, BreastFedForm, \
-                   BottleFedForm, DiaperStatusForm, TemperatureForm, SleepForm, WakeForm
+                   BottleFedForm, DiaperStatusForm, TemperatureForm, SleepForm, WakeForm, CreateFamilyForm
 
 @login_required
 def dashboard(request):
@@ -24,19 +24,24 @@ def create_user(request):
     if request.method == 'POST':
         caretaker_form = CareTakerForm(request.POST)
         user_form = CreateUserForm(request.POST)
-        if user_form.is_valid() and caretaker_form.is_valid():
+        family_form = CreateFamilyForm(request.POST)
+        if user_form.is_valid() and caretaker_form.is_valid() and family_form.is_valid():
             user = user_form.save()
+            family = family_form.save()
             phone = caretaker_form.cleaned_data['phone_number']
             relation = caretaker_form.cleaned_data['relation']
-            caretaker = CareTaker.objects.create(user=user, phone_number=phone, relation=relation)
+            caretaker = CareTaker.objects.create(user=user, family=family, phone_number=phone, relation=relation)
             return HttpResponseRedirect('/login/')
     else:
         caretaker_form = CareTakerForm(initial={'phone_number': '+12345555555'})
+        family_form = CreateFamilyForm()
         user_form = CreateUserForm()
 
 
     return render(request, 'MBF/create_user.html',
-                 {'caretaker_form': caretaker_form, 'user_form': user_form})
+                 {'caretaker_form': caretaker_form,
+                  'user_form': user_form,
+                  'family_form': family_form})
 
 @login_required
 def create_child(request):

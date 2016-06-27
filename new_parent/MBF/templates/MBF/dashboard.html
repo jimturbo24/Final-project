@@ -3,14 +3,14 @@
 
 {% block content %}
 
-<h1>{{ user.get_username|capfirst }}'s Dashboard</h1>
+<!-- <h1>{{ user.get_username|capfirst }}'s Dashboard</h1> -->
 {% for baby in babys %}
-<h2>{{ baby.first_name|capfirst }}'s most recent events.</h2>
+<h2>{{ baby.first_name|capfirst }}'s most recent events</h2>
 
 <div class="row">
   <div class="col-md-4 text-center text-center">
     <h3>Breast Feeding</h3>
-    <img src="{% static 'MBF/breastfeeding.jpg' %}" alt="Breast feeding image" height="128" width="143">
+    <img src="{% static 'MBF/breastfeeding_2.jpg' %}" alt="Breast feeding image" height="128" width="">
     {% for event in baby.get_breast_events %}
       <p>Fed from the {{ event.breast }} on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
     {% empty %}
@@ -42,7 +42,7 @@
   <a href="/MBF/add-event/diaper?baby_id={{ baby.id }}" class="btn btn-primary">Update</a>
 </div>
 </div>
-
+<br>
 <div class="row">
 <div class="col-md-4 text-center">
   <h3>Temperature</h3>
@@ -77,7 +77,8 @@
     <a href="/MBF/add-event/wake?baby_id={{ baby.id }}" class="btn btn-primary">Update</a>
   </div>
 </div>
-
+<br>
+<br>
 {% endfor %}
 
 {% endblock %}

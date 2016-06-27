@@ -1,5 +1,5 @@
 from django import forms
-from .models import CareTaker, Baby, BreastFed, BottleFed, DiaperStatus, Temperature, Sleep, Wake
+from .models import CareTaker, Baby, BreastFed, BottleFed, DiaperStatus, Temperature, Sleep, Wake, Family
 from django.contrib.auth.models import User
 
 class CreateUserForm(forms.ModelForm):
@@ -24,6 +24,11 @@ class CareTakerForm(forms.ModelForm):
         widgets = {
             'phone_number': forms.TextInput(attrs={'class': 'col-lg-2'}),
         }
+
+class CreateFamilyForm(forms.ModelForm):
+    class Meta:
+        model = Family
+        fields = ['name']
 
 class BabyForm(forms.ModelForm):
     class Meta:
