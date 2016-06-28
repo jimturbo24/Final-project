@@ -13,27 +13,33 @@ class CreateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password', 'first_name', 'last_name', 'email']
+        widgets = {
+            'password': forms.TextInput(attrs={'type': 'password'}),
+        }
 
 class CareTakerForm(forms.ModelForm):
     class Meta:
         model = CareTaker
         fields = ['phone_number', 'relation']
         labels = {
-            'phone_number': ''
-        }
-        widgets = {
-            'phone_number': forms.TextInput(attrs={'class': 'col-lg-2'}),
+            'phone_number': 'Phone (+1-234-555-5555)'
         }
 
 class CreateFamilyForm(forms.ModelForm):
     class Meta:
         model = Family
         fields = ['name']
+        labels = {
+            'name': 'Family Name'
+        }
 
 class BabyForm(forms.ModelForm):
     class Meta:
         model = Baby
         fields = ['first_name', 'last_name', 'birth_date', 'family']
+        labels = {
+            'birth_date': 'Birthday (mm/dd/yyyy)'
+        }
 
 class BreastFedForm(forms.ModelForm):
     class Meta:

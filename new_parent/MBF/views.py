@@ -33,7 +33,7 @@ def create_user(request):
             caretaker = CareTaker.objects.create(user=user, family=family, phone_number=phone, relation=relation)
             return HttpResponseRedirect('/login/')
     else:
-        caretaker_form = CareTakerForm(initial={'phone_number': '+12345555555'})
+        caretaker_form = CareTakerForm()
         family_form = CreateFamilyForm()
         user_form = CreateUserForm()
 

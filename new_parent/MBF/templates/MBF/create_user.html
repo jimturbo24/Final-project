@@ -12,26 +12,32 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <link href="https://bootswatch.com/spacelab/bootstrap.min.css" rel="stylesheet">
   {% bootstrap_javascript %}
+  {% bootstrap_messages %}
   <title>{% block title %}M.B.F. Create Account{% endblock %}</title>
   <link rel="icon" href="{% static 'MBF/MBF.ico' %}">
 </head>
 
 {% block content %}
-
-<form action="{% url 'MBF:create-account' %}" method="POST">
+<h1></h1>
+<div class="row">
+<div class="col-lg-4 col-lg-offset-4">
+<div class="well bs-component">
+<legend>Create an Account</legend>
+<form action="{% url 'MBF:create-account' %}" method="post" class="form-horizontal">
+  <fieldset>
     {% csrf_token %}
-    <legend>Create an Account</legend>
+    {% bootstrap_form user_form layout='inline' %}
+    {% bootstrap_form family_form layout='inline' %}
+    {% bootstrap_form caretaker_form layout='inline' %}
 
-    {% if form.errors %}
-        <p style="color: red;">Please correct the error{{ form.errors|pluralize }} below.</p>
-    {% endif %}
-    <table>
-    {{ user_form.as_table }}
-    {{ family_form.as_table }}
-    {{ caretaker_form.as_table }}
-  </table>
-    <input type="submit" value="OK">
+    {% buttons %}
+      <button type="submit" class="btn btn-primary col-lg-offset-3">Submit</button>
+      <button type="reset" class="btn btn-default col-lg-offset-1">Cancel</button>
+    {% endbuttons %}
+  </fieldset>
 </form>
-
+</div>
+</div>
+</div>
 
 {% endblock %}

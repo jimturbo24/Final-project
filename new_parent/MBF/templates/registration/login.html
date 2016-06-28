@@ -12,6 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <link href="https://bootswatch.com/spacelab/bootstrap.min.css" rel="stylesheet">
   {% bootstrap_javascript %}
+  {% bootstrap_messages %}
   <title>{% block title %}M.B.F. Login{% endblock %}</title>
   <link rel="icon" href="{% static 'MBF/MBF.ico' %}">
 </head>
@@ -30,37 +31,30 @@
     <p>Please login to see this page.</p>
     {% endif %}
 {% endif %}
-
-<form class="form-horizontal" method="post" action="{% url 'login' %}">
-  {% csrf_token %}
+<h1></h1>
+<div class="row">
+<div class="col-lg-4 col-lg-offset-4">
+<div class="well bs-component">
+<form action="{% url 'login' %}" method="post" class="form-horizontal">
   <fieldset>
-    <legend>Login to Mom's Best Friend</legend>
-    <div class="form-group">
-      <label for="id_username" class="col-lg-2 control-label">Username</label>
-      <div class="col-lg-2">
-        <input type="text" class="form-control" id="id_username" placeholder="Username" name="username">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="id_password" class="col-lg-2 control-label">Password</label>
-      <div class="col-lg-2">
-        <input type="password" class="form-control" id="id_password" placeholder="Password" name="password">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" value="login" class="btn btn-primary">Submit</button>
-        <div>
-          <p style=margin-top:10px class=""><a href="{% url 'password_reset' %}">Lost password?</a></p>
-          <p style=margin-top:10px class=""><a href="{% url 'MBF:create-account' %}">Create account</a></p>
-        </div>
-      </div>
-    </div>
+  <legend>Login to Mom's Best Friend</legend>
+  {% csrf_token %}
+  {% bootstrap_form form layout='inline' %}
 
+  {% buttons %}
+  <p class="bs-component">
+    <button type="submit" class="btn btn-primary col-lg-offset-3">Submit</button>
+    <button type="reset" class="btn btn-default col-lg-offset-1">Cancel</button>
+  </p>
+  <p class="bs-component">
+    <a href="{% url 'MBF:create-account' %}" class="btn btn-primary btn-block">Create account</a>
+    <a href="{% url 'password_reset' %}" class="btn btn-primary btn-block">Lost password?</a>
+  </p>
+  {% endbuttons %}
   </fieldset>
 </form>
-
-{# Assumes you setup the password_reset view in your URLconf #}
+</div>
+</div>
+</div>
 
 {% endblock %}
