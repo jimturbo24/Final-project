@@ -50,6 +50,9 @@ class BottleFedForm(forms.ModelForm):
     class Meta:
         model = BottleFed
         fields = {'amount'}
+        labels = {
+            'amount': 'Amount (fl. oz.)'
+        }
 
 class DiaperStatusForm(forms.ModelForm):
     class Meta:

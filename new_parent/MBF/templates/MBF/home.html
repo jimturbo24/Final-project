@@ -11,6 +11,7 @@
     <meta name="author" content="">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <link href="https://bootswatch.com/spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'MBF/styles/custom.css' %}" rel="stylesheet">
     {% bootstrap_javascript %}
     <title>M.B.F. Home</title>
     <link rel="icon" href="{% static 'MBF/MBF.ico' %}">
@@ -21,12 +22,15 @@
     </style>
   </head>
   <body>
-    <div class="jumbotron text-center">
-      <h1>Welcome to Mom's Best Friend</h1>
-      <img src="{% static 'MBF/MBF.png' %}" alt="Mothers Best Friend logo" height="303" width="400">
-      <!-- <a href="#" class="btn btn-primary btn-lg btn-block">Login</a> -->
-      <a href="/login/" class="btn btn-primary btn-lg">Login</a>
-      <a href="/MBF/create-account/" class="btn btn-primary btn-lg">Create Account</a>
+    <div class="jumbotron ">
+      <h1 class="text-center">Welcome to Mom's Best Friend</h1>
+      <a href="/MBF/" class="">
+        <img class="center-block" src="{% static 'MBF/MBF.png' %}" alt="Mothers Best Friend logo" height="303" width="400">
+      </a>
+      <div class="row-offset text-center">
+        <a href="/login/" class="btn btn-primary btn-lg">Login</a>
+        <a href="/MBF/create-account/" class="btn btn-primary btn-lg">Create Account</a>
+      </div>
     </div>
 
 

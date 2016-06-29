@@ -5,10 +5,10 @@
 
 <!-- <h1>{{ user.get_username|capfirst }}'s Dashboard</h1> -->
 {% for baby in babys %}
-<h2>{{ baby.first_name|capfirst }}'s most recent events</h2>
+<legend><h2>{{ baby.first_name|capfirst }}'s most recent events</h2></legend>
 
 <div class="row">
-  <div class="col-md-4 text-center text-center">
+  <div class="col-md-4 text-center">
     <h3>Breast Feeding</h3>
     <img src="{% static 'MBF/breastfeeding_2.jpg' %}" alt="Breast feeding image" height="128" width="">
     {% for event in baby.get_breast_events %}
@@ -33,7 +33,7 @@
 
 <div class="col-md-4 text-center">
   <h3>Diaper</h3>
-  <img src="{% static 'MBF/baby-diaper-outline.png' %}" alt="Bottle image" height="" width="">
+  <img src="{% static 'MBF/baby-diaper-outline.png' %}" alt="Diaper image" height="" width="">
   {% for event in baby.get_diaper_events %}
     <p >{{ event.diaper|capfirst }} in the diaper on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
   {% empty %}
@@ -46,7 +46,7 @@
 <div class="row">
 <div class="col-md-4 text-center">
   <h3>Temperature</h3>
-  <img src="{% static 'MBF/thermometer.png' %}" alt="Bottle image" height="" width="">
+  <img src="{% static 'MBF/thermometer.png' %}" alt="Temperature image" height="" width="">
   {% for event in baby.get_temperature_events %}
     <p>Temperature was {{ event.temp }} on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
   {% empty %}
@@ -57,7 +57,7 @@
 
 <div class="col-md-4 text-center">
   <h3>Sleep Time</h3>
-  <img src="{% static 'MBF/moon-and-stars.png' %}" alt="Bottle image" height="" width="">
+  <img src="{% static 'MBF/moon-and-stars.png' %}" alt="Sleep image" height="" width="">
   {% for event in baby.get_sleep_events %}
     <p>Fell asleep on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
   {% empty %}
@@ -68,7 +68,7 @@
 
   <div class="col-md-4 text-center">
     <h3>Wake Time</h3>
-    <img src="{% static 'MBF/smiling-sun.png' %}" alt="Bottle image" height="" width="">
+    <img src="{% static 'MBF/smiling-sun.png' %}" alt="Wake image" height="" width="">
     {% for event in baby.get_wake_events %}
       <p>Woke up on {{ event.event_time|date:'l' }} at {{ event.event_time|date:'P' }}</p>
     {% empty %}
@@ -80,5 +80,24 @@
 <br>
 <br>
 {% endfor %}
+
+<div class="col-lg-offset-2">
+     <script type="text/javascript">
+       	amzn_assoc_ad_type = "banner";
+	amzn_assoc_marketplace = "amazon";
+	amzn_assoc_region = "US";
+	amzn_assoc_placement = "assoc_banner_placement_default";
+	amzn_assoc_campaigns = "baby";
+	amzn_assoc_banner_type = "category";
+	amzn_assoc_p = "48";
+	amzn_assoc_isresponsive = "false";
+	amzn_assoc_banner_id = "1JYH964PEQVNKDREH182";
+	amzn_assoc_width = "728";
+	amzn_assoc_height = "90";
+	amzn_assoc_tracking_id = "momsbestfri07-20";
+	amzn_assoc_linkid = "b37b543c10490e4df7ef1c2d0197f111";
+     </script>
+     <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
+    </div>
 
 {% endblock %}

@@ -1,13 +1,26 @@
 {% extends "MBF/base.html" %}
+{% load bootstrap3 %}
 
 {% block content %}
 
-<form action="" method="POST">
+<div class="row row-offset">
+<div class="col-lg-4 col-lg-offset-4">
+<div class="well bs-component">
+<legend>Add Event</legend>
+<form action="" method="post" class="form-horizontal">
+  <fieldset>
     {% csrf_token %}
-    <legend>Add Event</legend>
-    {{ form }}
+    {% bootstrap_form form layout='inline' %}
     <input type="hidden" name="baby_id" value="{{ baby_id }}"/>
-    <input type="submit" value="OK"/>
-</form>
 
+    <p class="text-center">
+      <button type="submit" class="btn btn-primary ">Submit</button>
+      <button type="reset" class="btn btn-default ">Reset</button>
+      <a href="{% url 'MBF:MBF-dashboard' %}" class="btn btn-danger">Cancel</a>
+    </p>
+  </fieldset>
+</form>
+</div>
+</div>
+</div>
 {% endblock %}

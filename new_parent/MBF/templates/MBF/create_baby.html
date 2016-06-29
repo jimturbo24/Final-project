@@ -1,10 +1,8 @@
 {% extends "MBF/base.html" %}
 {% load bootstrap3 %}
 
-
 {% block content %}
-<h1></h1>
-<div class="row">
+<div class="row row-offset">
 <div class="col-lg-4 col-lg-offset-4">
 <div class="well bs-component">
 <form action="{% url 'MBF:create-child' %}" method="post" class="form-horizontal">
@@ -12,13 +10,12 @@
     <legend>Add a Child</legend>
     {% csrf_token %}
     {% bootstrap_form baby_form layout='inline' %}
-    {% buttons %}
-  <p class="bs-component">
-    <button type="submit" class="btn btn-primary col-lg-offset-3">Submit</button>
-    <button type="reset" class="btn btn-default col-lg-offset-1">Cancel</button>
-  </p>
 
-  {% endbuttons %}
+    <p class="text-center">
+      <button type="submit" class="btn btn-primary ">Submit</button>
+      <button type="reset" class="btn btn-default ">Reset</button>
+      <a href="{% url 'MBF:MBF-dashboard' %}" class="btn btn-danger">Cancel</a>
+    </p>
   </fieldset>
 </form>
 </div>
