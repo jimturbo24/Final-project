@@ -11,5 +11,4 @@ urlpatterns = [
     url(r'^add-event/(?P<event_type>[a-z]+)$', views.add_event, name="add-event" ),
     ## FIXME: Abstract out charts per event type
     url(r'^bottle-chart$', views.bottle_chart, name="bottle-chart" ),
-    url(r'^temp-chart$', views.temperature_chart, name="temp-chart" ),
 ]

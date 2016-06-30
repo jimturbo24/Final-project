@@ -8,7 +8,7 @@
 <legend><h2>{{ baby.first_name|capfirst }}'s most recent events</h2></legend>
 
 <div class="row">
-  <div class="col-md-4 text-center">
+  <div class="col-xs-4 col-md-4 text-center">
     <h3>Breast Feeding</h3>
     <img src="{% static 'MBF/breastfeeding_2.jpg' %}" alt="Breast feeding image" height="128" width="">
     {% for event in baby.get_breast_events %}
@@ -19,7 +19,7 @@
     <a href="/MBF/add-event/breast?baby_id={{ baby.id }}" class="btn btn-primary">Update</a>
   </div>
 
-  <div class="col-md-4 text-center">
+  <div class="col-xs-4 col-md-4 text-center">
     <h3>Bottle Feeding</h3>
     <img src="{% static 'MBF/feeding-bottle.png' %}" alt="Bottle image" height="" width="">
     {% for event in baby.get_bottle_events %}
@@ -31,7 +31,7 @@
     <a href="/MBF/bottle-chart?baby_id={{ baby.id }}" class="btn btn-primary">Graph</a>
   </div>
 
-<div class="col-md-4 text-center">
+<div class="col-xs-4 col-md-4 text-center">
   <h3>Diaper</h3>
   <img src="{% static 'MBF/baby-diaper-outline.png' %}" alt="Diaper image" height="" width="">
   {% for event in baby.get_diaper_events %}
@@ -44,7 +44,7 @@
 </div>
 <br>
 <div class="row">
-<div class="col-md-4 text-center">
+<div class="col-xs-4 col-md-4 text-center">
   <h3>Temperature</h3>
   <img src="{% static 'MBF/thermometer.png' %}" alt="Temperature image" height="" width="">
   {% for event in baby.get_temperature_events %}
@@ -55,7 +55,7 @@
   <a href="/MBF/add-event/temperature?baby_id={{ baby.id }}" class="btn btn-primary">Update</a>
 </div>
 
-<div class="col-md-4 text-center">
+<div class="col-xs-4 col-md-4 text-center">
   <h3>Sleep Time</h3>
   <img src="{% static 'MBF/moon-and-stars.png' %}" alt="Sleep image" height="" width="">
   {% for event in baby.get_sleep_events %}
@@ -66,7 +66,7 @@
   <a href="/MBF/add-event/sleep?baby_id={{ baby.id }}" class="btn btn-primary">Update</a>
 </div>
 
-  <div class="col-md-4 text-center">
+  <div class="col-xs-4 col-md-4 text-center">
     <h3>Wake Time</h3>
     <img src="{% static 'MBF/smiling-sun.png' %}" alt="Wake image" height="" width="">
     {% for event in baby.get_wake_events %}
