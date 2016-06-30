@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from rest_framework import routers
+from MBF.api import UserViewSet, BottleFedViewSet, BabyViewSet, FamilyViewSet
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'family', FamilyViewSet)
+router.register(r'baby', BabyViewSet)
+router.register(r'bottle', BottleFedViewSet)
 
 urlpatterns = [
+    url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^MBF/', include('MBF.urls')),
     url(r'^$', 'MBF.views.home', name='home'),
