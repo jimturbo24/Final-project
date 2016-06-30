@@ -7,7 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import CareTaker, BreastFed, BottleFed, DiaperStatus, Temperature, Sleep, Wake, Baby
 from .forms import CreateUserForm, CareTakerForm, BabyForm, BreastFedForm, \
-                   BottleFedForm, DiaperStatusForm, TemperatureForm, SleepForm, WakeForm, CreateFamilyForm
+                   BottleFedForm, DiaperStatusForm, TemperatureForm, SleepForm, \
+                   WakeForm, CreateFamilyForm
 
 @login_required
 def dashboard(request):
@@ -51,6 +52,21 @@ def create_child(request):
         return HttpResponseRedirect('/MBF/')
 
     return render(request, 'MBF/create_baby.html', {'baby_form': baby_form})
+
+def create_caretaker(request):
+        caretaker_form = CareTakerForm(request.POST)
+        user_form = CreateUserForm(request.POST)
+        if caretaker_form.is_valid() and user_form.is_valid():
+            user = user_form.save()
+            current_ct = CareTaker.objects.get(user=request.user)
+            family = current_ct.family
+            phone = caretaker_form.cleaned_data['phone_number']
+            relation = caretaker_form.cleaned_data['relation']
+            caretaker = CareTaker.objects.create(user=user, family=family, phone_number=phone, relation=relation)
+            return HttpResponseRedirect('/MBF/')
+
+        return render(request, 'MBF/create_caretaker.html', {'caretaker_form': caretaker_form,
+                                                             'user_form': user_form})
 
 @login_required
 def add_event(request, event_type):
